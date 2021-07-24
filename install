@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+install_path="/usr/bin"
+
+if test $1; then
+    install_path="$1";
+fi
+
+cargo build --release
+
+doas cp target/release/dosu ${install_path}/dosu
+doas chown root:bin ${install_path}/dosu
+doas chmod 4555 ${install_path}/dosu
